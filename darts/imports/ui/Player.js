@@ -1,33 +1,61 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {Players} from './../../imports/api/players';
-// import FaBeer from 'react-icons/fa/beer';
+import FaStarO from 'react-icons/lib/fa/star-o';
+import FaStar from 'react-icons/lib/fa/star';
+import FaHeartO from 'react-icons/lib/fa/heart-o';
+import FaHeart from 'react-icons/lib/fa/heart';
+import FaBan from 'react-icons/lib/fa/ban';
+
+
 
 export default class Player extends React.Component {
+  // 
   incrementScore(changeType) {
-    console.log(this.props.player.isDead + this.props.player.score)
-    if (this.props.player.isDead === false && this.props.player.score === 0 && changeType === -1) {
-      Players.update(this.props.player._id,{$set:{isDead: true}});
+
+    console.log("before: " + this.props.player.isDead + this.props.player.score)
+
+
+    if (this.props.player.score === 1 && changeType === -1) {
+      Players.update(this.props.player._id,{$set:{isDead: true}, $inc: {score: changeType}});
     }
-    else if (this.props.player.isDead === false && this.props.player.score < 6 && changeType === 1) {
+    else if (this.props.player.isDead === false && this.props.player.score < 7 && changeType === 1) {
+      console.log(FaBan)
       Players.update(this.props.player._id,{$inc: {score: changeType}});
+      console.log("after: " + this.props.player.score)
     } 
-    else if (this.props.player.isDead === false && this.props.player.score > 0 && changeType === -1) {
+    else if (this.props.player.isDead === false && this.props.player.score > 1 && changeType === -1) {
       Players.update(this.props.player._id,{$inc: {score: changeType}});
-      if (this.props.player.score) {console.log("Final Life " + this.props.player.score)}
     }
     else {
       console.log("Player is dead");
     }
+    
   }
+
   render() {
+
+
+    function renderHearts(score, status, name){
+      if(!status){
+        return 'X' + Array(score).join('\u2764')
+      }
+      else {
+        return name + ' is dead.'
+      }
+      
+
+    }
     return (
-      <div key={this.props.player._id} className={"item " + (this.props.player.score >= 3 ? 'item--killerMode' : (this.props.player.score === 0) ? 'item--lastLife' : '')}>
-        <p className="item--hearts">
-         {'\u2618 ' + Array(this.props.player.score+1).join('\u2764 ') }
+
+      <div key={this.props.player._id} className={"item " + (this.props.player.score >= 4 ? 'item--killerMode' : (this.props.player.score === 1) ? 'item--lastLife' : (this.props.player.isDead === true) ? 'status--dead' : '')}>
+        <p className="item--hearts" id="hearts">
+          {console.log(this.props.player.score)}
+          {renderHearts(this.props.player.score, this.props.player.isDead, this.props.player.name)}        
+        
         </p>
         <p className="item--player">
-          {this.props.player.name}
+          {this.props.player.number} - {this.props.player.name}
         </p>
         <div className="item--buttons">
           <button className="button button--round" onClick={() => this.incrementScore(-1)}>-</button>

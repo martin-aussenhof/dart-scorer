@@ -52,6 +52,10 @@ h1 {
 	color: white;
 }
 
+.status--dead {
+	background: #e5e5e5;
+}
+
 .item__message {
 	font-size: 1.3rem;
 	font-style: italic;
@@ -71,6 +75,9 @@ h1 {
 	color: red;
 	font-style: italic;
 }
+
+
+
 
 /*.status--killerMode {
 	color: green;
