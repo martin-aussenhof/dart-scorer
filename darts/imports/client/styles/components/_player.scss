@@ -1,0 +1,39 @@
+.player {
+	align-items: center;
+	display: flex;
+	justify-content: space-between;
+}
+
+.player__name {
+	font-weight: 300;
+	font-size: 1.8rem;
+}
+
+.player__stats {
+	font-size: 1.5rem;
+	font-weight: 300;
+}
+
+.player__actions {
+	flex-shrink: 0;
+}
+
+.item__hearts {
+	font-style: bold;
+	font-size: 3rem;
+}
+
+
+.item__killerMode {
+	background: #66B033;
+	color: white;
+}
+
+.item__lastLife {
+	background: #FD5308;
+	color: white;
+}
+
+.status__dead {
+	background: #e5e5e5;
+}

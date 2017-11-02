@@ -14,30 +14,18 @@ body {
 	font-size: 1.6rem;
 }
 
+input, button, select {
+	font-size: 1.3rem;
+}
+
 h1 {
 	font-weight: 300;
-	text-align: center;
 	font-size: 2.4rem;
 }
 
-.status-isDead {
-	text-decoration: line-through;
-}
-
-.status-lastLife {
-	color: red;
-}
-
-.status-killerMode {
-	color: green;
-	font-style: italic;
-	font-weight: bold;
-}
-
-.status-dead {
-	color: #e5e5e5;
-	font-style: italic;
-	font-weight: bold;
-}
-
+@import './components/title-bar';
+@import './components/wrapper';
+@import './components/item';
 @import './components/button';
+@import './components/form';
+@import './components/player';

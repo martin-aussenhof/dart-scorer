@@ -48,19 +48,21 @@ export default class Player extends React.Component {
     }
     return (
 
-      <div key={this.props.player._id} className={"item " + (this.props.player.score >= 4 ? 'item--killerMode' : (this.props.player.score === 1) ? 'item--lastLife' : (this.props.player.isDead === true) ? 'status--dead' : '')}>
-        <p className="item--hearts" id="hearts">
+      <div key={this.props.player._id} className={"item " + (this.props.player.score >= 4 ? 'item__killerMode' : (this.props.player.score === 1) ? 'item__lastLife' : (this.props.player.isDead === true) ? 'status__dead' : '')}>
+        <p className="item__hearts" id="hearts">
           {console.log(this.props.player.score)}
           {renderHearts(this.props.player.score, this.props.player.isDead, this.props.player.name)}        
-        
         </p>
-        <p className="item--player">
-          {this.props.player.number} - {this.props.player.name}
-        </p>
-        <div className="item--buttons">
-          <button className="button button--round" onClick={() => this.incrementScore(-1)}>-</button>
-          <button className="button button--round" onClick={() => this.incrementScore(1)}>+</button>
-          <button className="button button--round" onClick={() => Players.remove(this.props.player._id)}>X</button>
+        <div className="player">
+          <div>
+            <h3 className="player__name">{this.props.player.name}</h3>
+            <p className="player__stats">{this.props.player.number}</p>
+          </div>
+          <div className="player__actions">
+            <button className="button button--round" onClick={() => this.incrementScore(-1)}>-</button>
+            <button className="button button--round" onClick={() => this.incrementScore(1)}>+</button>
+            <button className="button button--round" onClick={() => Players.remove(this.props.player._id)}>X</button>
+          </div>
         </div>
       </div>
     )
